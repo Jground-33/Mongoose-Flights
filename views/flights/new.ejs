@@ -22,7 +22,7 @@
         </select>
     </label>
     <label> Departures:
-        <input type="datetime-local" name="departs" value="2019-09-12T13:30">
+        <input type="datetime-local" name="departs" value="<%= new Date().toISOString().slice(0,16)%>">
     </label><br>
 
     <label>Flight Number:

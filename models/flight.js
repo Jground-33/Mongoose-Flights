@@ -30,7 +30,7 @@ const flightSchema = new Schema({
     departs: {
         type: Date,
         default: function () {
-            return new Date().getFullYear(); // add one year here
+            return new Date().setFullYear(2020);
         }
     }
 }, {
