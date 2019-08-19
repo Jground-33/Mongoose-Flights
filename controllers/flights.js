@@ -14,7 +14,7 @@ function index(req, res) {
         departs: 'asc'
     }).exec(function (err, flights) {
         res.render('flights/index', {
-            title: "Flights",
+            title: "Flights Overview",
             flights
         });
     })

@@ -1,28 +1,28 @@
 <%- include('../partials/header');%>
 <%- include('../partials/navbar');%>
 
-<body>
-
+<div class="container">
     <h1>Flights</h1>
     <table>
         <thead>
             <tr>
                 <th>Airline</th>
                 <th>Flight Number</th>
-                <th>Departures</th>
+                <th class="departures">Departures</th>
             </tr>
         </thead>
-        <tbody>
-            <% flights.forEach(function(f) { %>
-            <tr>
-                <td><%= f.airline %></td>
-                <td><%= f.flightNo %></td>
-                <td><%= f.departs %></td>
-                <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
-            </tr>
-            <% }); %>
-        </tbody>
-    </table>
+            <tbody>
+                <% flights.forEach(function(f) { %>
+                <tr>
+                    <td><%= f.airline %></td>
+                    <td class="flight-no"><%= f.flightNo %></td>
+                    <td class="departures"><%= f.departs.toLocaleString() %></td>
+                    <td><a class="details" href="/flights/<%= f._id %>">DETAILS</a></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

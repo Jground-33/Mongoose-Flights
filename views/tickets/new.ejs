@@ -1,7 +1,9 @@
 <%- include('../partials/header') %>
 <%- include('../partials/navbar');%>
-<body>
-<h2>Enter a New Ticket For <%= flight.airline %> Flight <%= flight.flightNo %> </h2>
+
+
+<div class="container">
+<h4>Enter a New Ticket For <%= flight.airline %> Flight <%= flight.flightNo %> </h4>
 <form action="/flights/<%= flight._id %>/tickets" method="POST">
     <label>Seat:
         <input name="seat" required pattern="[A-F][1-9]\d?">
@@ -11,6 +13,9 @@
     </label>
     <input type="submit" value="Add Ticket">
 </form>
+
+
+</div>
 
 </body>
 

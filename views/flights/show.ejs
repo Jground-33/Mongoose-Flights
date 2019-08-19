@@ -1,62 +1,73 @@
 <%- include('../partials/header');%>
 <%- include('../partials/navbar');%>
 
-<body>
 
+<div class="container">
+  <br>
   <section>
-    <div>airline: </div>
-    <div><%= flight.airline %></div>
-    <div>Departure Location: </div>
-    <div><%= flight.airport %></div>
-    <div>Flight Number: </div>
-    <div><%= flight.flightNo%></div>
-    <div>Departure Time: </div>
-    <div><%= flight.departs%></div>
+    <span> Airline: </span>
+    <span><%= flight.airline %></span>
+    <br>
+    <span>Departure Location: </span>
+    <span><%= flight.airport %></span>
+    <br>
+    <span>Flight Number: </span>
+    <span><%= flight.flightNo%></span>
+    <br>
+    <span>Departure Time: </span>
+    <span><%= flight.departs.toLocaleString() %></span>
+  </section>
+  <br>
+  <a id="new-ticket" href="/flights/<%= flight._id %>/tickets/new">Enter a New Ticket</a>
+  <br>
+  <section>
+    <% tickets.forEach( ticket => {%>
+    <br>
+    <form id="delete-form" action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE" method="POST">
+      <button class="btn btn-danger" type="submit">X</button>
+    </form>
+    <span>Ticket Seat Number:<%= ticket.seat %></span>
+    <span>Ticket Price: $<%=ticket.price%></span>
+    <%})%>
+
+    <br>
   </section>
 
-  <a href="/flights/<%= flight._id %>/tickets/new">Enter a New Ticket</a>
   <br>
-
-  <% tickets.forEach( ticket => {%>
-    <br>
-    <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE"
-      method="POST">
-      <button class="btn btn-danger"type="submit">X</button>
-    </form>
-    <div>Ticket Seat Number:</div>
-    <div> <%= ticket.seat %></div>
-    <div>Ticket Price:</div>
-    <div> <%= ticket.price %></div>
-  <%})%>
-
-  <br>
-
   <h2> Add destination:</h2>
-
-  <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-
-    <label>Airport:</label>
-    <select name="airport">
-      <%airports.forEach( (airport) => {%>
-      <% if(flight.airport != airport) { %>
-      <option value="<%= airport %>"><%= airport %></option> %>
-      <%}%>
+  <section>
+    <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+      <label>Airport:</label>
+      <select name="airport">
+        <%airports.forEach( (airport) => {%>
+        <% if(flight.airport != airport) { %>
+        <option value="<%= airport %>"><%= airport %></option> %>
+        <%}%>
       <% })%>
-    </select>
+      </select>
 
-    <label>Arrival Time</label>
-    <input type="datetime-local" name="arrival" value="2019-09-12T13:30">
-    <input type="submit" value="Add Destination">
-  </form>
+      <br>
+
+      <label>Arrival Time</label>
+      <input type="datetime-local" name="arrival" value="2019-09-12T13:30">
+      <input type="submit" value="Add Destination">
+    </form>
+  </section>
 
 
-  <% flight.destinations.forEach( (d) => {  %>
-  <br>
-  <div>Destination Location: </div>
-  <div><%= d.airport %></div>
-  <div>Arrival Time: </div>
-  <div><%= d.arrival %></div>
-  <% })%>
+  <div>
+    <% flight.destinations.forEach( (d) => {  %>
+    <br>
+    <span>Destination Location: </span>
+    <span><%= d.airport %></span>
+    <br>
+    <span>Arrival Time: </span>
+    <span><%= d.arrival.toLocaleString() %></span>
+    <br>
+    <% })%>
+  </div>
+
+</div>
 
 </body>
 
