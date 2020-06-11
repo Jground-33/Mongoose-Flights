@@ -1,3 +1,5 @@
+// Ticket Controller
+
 const Ticket = require('../models/ticket');
 const Flight = require("../models/flight");
 
@@ -13,7 +15,7 @@ function newTicketPage(req, res) {
         res.render('tickets/new', {
             title: "Enter a New Ticket",
             flight
-        }) // pass in at least the flight.
+        }) 
     })
 }
 
